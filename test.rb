@@ -7,7 +7,7 @@ client = NationBuilder::Client.new('aycc', ENV['NATIONBUILDER_APIKEY'], retries:
 puts "finding peeps step 1"
 
 filter_all = {
-  tag: "another"
+  tag: "wants%20to:%20volunteer%202018"
   }
   
 all_contacts = client.call(:people_tags, :people, filter_all)
@@ -49,7 +49,7 @@ end
   
   filter_all_3 = {
   "person": {
-  "no_answer_no": "#{count1}",
+  "no_answer": "#{count1}",
      "id": "#{tagged_id_all}",
   }
 }
