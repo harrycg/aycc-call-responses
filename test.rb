@@ -74,3 +74,4 @@ end
   client.call(:people, :push, filter_all_3)
 
 end
+puts "thats everyone done"
