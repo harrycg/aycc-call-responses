@@ -71,6 +71,5 @@ puts "#{id4}"
 
 end
   
-  client.call(:people, :push, filter_all_3)
 
 end
