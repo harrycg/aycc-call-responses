@@ -132,14 +132,50 @@ puts "#{person_id_wants_to_vol} #{not_interested_phone_call_after_jan.count} Mea
    not_interested_phone_call_total= not_interested_phone_call_3.count
   puts " #{person_id_wants_to_vol} #{not_interested_phone_call_total} Meaningful Total"
   
+#SEND INFO CALLS
+  puts "starting send info"
+  
+  
+ send_info_phone_call = {
+  person_id: "#{person_id_wants_to_vol}",
+  status: "send_information",
+    method: "phone_call"
+    
+  }
+  
+send_info_phone_call_1 = client.call(:contacts, :index, send_info_phone_call)
+  send_info_phone_call_2 = NationBuilder::Paginator.new(client, send_info_phone_call_1)
+  
+send_info_phone_call_3 = []
+  send_info_phone_call_3 += send_info_phone_call_2.body['results']
+
+ while send_info_phone_call_2.next?
+  send_info_phone_call_2 = send_info_phone_call_2.next
+  send_info_phone_call_3 += send_info_phone_call_2.body['results']
+
+end  
+
+  # send_info calls after Jan 1st 2018
+send_info_phone_call_after_jan = send_info_phone_call_3.select do |b|
+
+  Date.parse(b['created_at']) >= jan_01_18
+end
+
+puts "#{person_id_wants_to_vol} #{send_info_phone_call_after_jan.count} Meaninful filtered"
+
+#Total send_info calls - all time
+   send_info_phone_call_total= send_info_phone_call_3.count
+  puts " #{person_id_wants_to_vol} #{send_info_phone_call_total} Meaningful Total"
+
+
 
 
 #Total PICK UPS - INCLUDING ALL TYPES OF PICK UPS
-total_pick_ups= meaningful_phone_call_filtered.count+answered_phone_call_after_jan.count+not_interested_phone_call_after_jan.count
+total_pick_ups= meaningful_phone_call_filtered.count+answered_phone_call_after_jan.count+not_interested_phone_call_after_jan.count+send_info_phone_call_after_jan.count
 
-   puts "#{person_id_wants_to_vol} #{total_pick_ups}"
+puts "#{person_id_wants_to_vol} #{total_pick_ups}"
 
- custom_fields_to_be_added = {
+custom_fields_to_be_added = {
   "person": {
   "answered_18": "#{total_pick_ups}",
      "id": "#{person_id_wants_to_vol}",
