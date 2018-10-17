@@ -271,8 +271,10 @@ custom_fields_to_be_added = {
   
   client.call(:people, :push, custom_fields_to_be_added)
 
-
+#all_calls=all_calls+total_calls
 end
+
+#puts "#{all_calls}"
 puts "thats everyone done"
   
 
