@@ -126,11 +126,11 @@ not_interested_phone_call_after_jan = not_interested_phone_call_3.select do |a|
   Date.parse(a['created_at']) >= jan_01_18
 end
 
-puts "#{person_id_wants_to_vol} #{not_interested_phone_call_after_jan.count} Meaninful filtered"
+puts "#{person_id_wants_to_vol} #{not_interested_phone_call_after_jan.count} Not interested filtered"
 
 #Total not interested calls - all time
    not_interested_phone_call_total= not_interested_phone_call_3.count
-  puts " #{person_id_wants_to_vol} #{not_interested_phone_call_total} Meaningful Total"
+  puts " #{person_id_wants_to_vol} #{not_interested_phone_call_total} Not interested Total"
   
 #SEND INFO CALLS
   puts "starting send info"
@@ -161,14 +161,55 @@ send_info_phone_call_after_jan = send_info_phone_call_3.select do |b|
   Date.parse(b['created_at']) >= jan_01_18
 end
 
-puts "#{person_id_wants_to_vol} #{send_info_phone_call_after_jan.count} Meaninful filtered"
+puts "#{person_id_wants_to_vol} #{send_info_phone_call_after_jan.count} Send info filtered"
+
+
 
 #Total send_info calls - all time
    send_info_phone_call_total= send_info_phone_call_3.count
-  puts " #{person_id_wants_to_vol} #{send_info_phone_call_total} Meaningful Total"
+  puts " #{person_id_wants_to_vol} #{send_info_phone_call_total} Send Info Total"
+
+
+#NO ANSWER CALLS
+  puts "starting no answers"
+  
+  
+ no_answer_phone_call = {
+  person_id: "#{person_id_wants_to_vol}",
+  status: "no_answer",
+    method: "phone_call"
+    
+  }
+  
+no_answer_phone_call_1 = client.call(:contacts, :index, no_answer_phone_call)
+  no_answer_phone_call_2 = NationBuilder::Paginator.new(client, no_answer_phone_call_1)
+  
+no_answer_phone_call_3 = []
+  no_answer_phone_call_3 += no_answer_phone_call_2.body['results']
+
+ while no_answer_phone_call_2.next?
+  no_answer_phone_call_2 = no_answer_phone_call_2.next
+  no_answer_phone_call_3 += no_answer_phone_call_2.body['results']
+
+end  
+
+  # no_answer calls after Jan 1st 2018
+no_answer_phone_call_after_jan = no_answer_phone_call_3.select do |b|
+
+  Date.parse(b['created_at']) >= jan_01_18
+end
+
+puts "#{person_id_wants_to_vol} #{no_answer_phone_call_after_jan.count} Send info filtered"
 
 
 
+#Total no_answer calls - all time
+   no_answer_phone_call_total= no_answer_phone_call_3.count
+  puts " #{person_id_wants_to_vol} #{no_answer_phone_call_total} Send Info Total"
+
+
+#Total NO PICK UPS - INCLUDING ALL TYPES OF PICK UPS
+total_no_pick_ups= no_answer_phone_call_after_jan.count
 
 #Total PICK UPS - INCLUDING ALL TYPES OF PICK UPS
 total_pick_ups= meaningful_phone_call_filtered.count+answered_phone_call_after_jan.count+not_interested_phone_call_after_jan.count+send_info_phone_call_after_jan.count
