@@ -42,7 +42,7 @@ contacts_1 = client.call(:contacts, :index, filter_all_2)
   contacts_2 = NationBuilder::Paginator.new(client, contacts_1)
 
   jan_01_18= Date.parse('2018-01-01')
-puts "#{jan_01_18} yep" 
+puts "#{tagged_id_all} #{jan_01_18} yep" 
 
   
 contacts_3 = []
@@ -61,7 +61,7 @@ end
 
 puts "#{tagged_id_all} #{contacts_filtered.count} Answered filtered"
   count1= contacts_3.count
-  puts "#{count1} Answered total"
+  puts "#{tagged_id_all} #{count1} Answered total"
 
   puts "starting meaningful contact"
   
@@ -95,10 +95,10 @@ puts "#{tagged_id_all} #{donations_filtered123.count} Meaninful filtered"
    textcountz= texts_z.count
 
 
-  puts " #{text_responded_tagged} #{textcountz} Meaningful Total"
+  puts " #{tagged_id_all} #{textcountz} Meaningful Total"
   
 totalanswer= contacts_filtered.count+donations_filtered123.count
-   puts "#{totalanswer}"
+   puts "#{tagged_id_all} #{totalanswer}"
 
  filter_all_3 = {
   "person": {
