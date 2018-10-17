@@ -161,13 +161,13 @@ send_info_phone_call_after_jan = send_info_phone_call_3.select do |b|
   Date.parse(b['created_at']) >= jan_01_18
 end
 
-puts "#{person_id_wants_to_vol} #{send_info_phone_call_after_jan.count} Send info filtered"
+puts "#{person_id_wants_to_vol} #{send_info_phone_call_after_jan.count} no answer filtered"
 
 
 
 #Total send_info calls - all time
    send_info_phone_call_total= send_info_phone_call_3.count
-  puts " #{person_id_wants_to_vol} #{send_info_phone_call_total} Send Info Total"
+  puts " #{person_id_wants_to_vol} #{send_info_phone_call_total} No answer Total"
 
 
 #NO ANSWER CALLS
@@ -199,7 +199,8 @@ no_answer_phone_call_after_jan = no_answer_phone_call_3.select do |b|
   Date.parse(b['created_at']) >= jan_01_18
 end
 
-puts "#{person_id_wants_to_vol} #{no_answer_phone_call_after_jan.count} Send info filtered"
+puts "#{person_id_wants_to_vol} #{no_answer_phone_call_after_jan.count} No answer filtered"
+
 
 
 
@@ -208,8 +209,45 @@ puts "#{person_id_wants_to_vol} #{no_answer_phone_call_after_jan.count} Send inf
   puts " #{person_id_wants_to_vol} #{no_answer_phone_call_total} Send Info Total"
 
 
+#LEFT MESSAGE CALLS
+  puts "starting left message"
+  
+  
+ left_message_phone_call = {
+  person_id: "#{person_id_wants_to_vol}",
+  status: "left_message",
+    method: "phone_call"
+    
+  }
+  
+left_message_phone_call_1 = client.call(:contacts, :index, left_message_phone_call)
+  left_message_phone_call_2 = NationBuilder::Paginator.new(client, left_message_phone_call_1)
+  
+left_message_phone_call_3 = []
+  left_message_phone_call_3 += left_message_phone_call_2.body['results']
+
+ while left_message_phone_call_2.next?
+  left_message_phone_call_2 = left_message_phone_call_2.next
+  left_message_phone_call_3 += left_message_phone_call_2.body['results']
+
+end  
+
+  # left_message calls after Jan 1st 2018
+left_message_phone_call_after_jan = left_message_phone_call_3.select do |f|
+
+  Date.parse(f['created_at']) >= jan_01_18
+end
+
+puts "#{person_id_wants_to_vol} #{left_message_phone_call_after_jan.count} No answer filtered"
+
+#Total left_message calls - all time
+   left_message_phone_call_total= left_message_phone_call_3.count
+  puts " #{person_id_wants_to_vol} #{left_message_phone_call_total} Send Info Total"
+
+
+
 #Total NO PICK UPS - INCLUDING ALL TYPES OF PICK UPS
-total_no_pick_ups= no_answer_phone_call_after_jan.count
+total_no_pick_ups= no_answer_phone_call_after_jan.count+left_message_phone_call_after_jan.count
 
 #Total PICK UPS - INCLUDING ALL TYPES OF PICK UPS
 total_pick_ups= meaningful_phone_call_filtered.count+answered_phone_call_after_jan.count+not_interested_phone_call_after_jan.count+send_info_phone_call_after_jan.count
@@ -218,6 +256,7 @@ puts "#{person_id_wants_to_vol} #{total_pick_ups}"
 
 custom_fields_to_be_added = {
   "person": {
+    "no_answer_18":"#{total_no_pick_ups}".
   "answered_18": "#{total_pick_ups}",
      "id": "#{person_id_wants_to_vol}",
   }
