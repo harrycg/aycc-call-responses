@@ -85,7 +85,7 @@ meaningful_phone_call_3 = []
 
 end  
 
-  
+  # Meaningful calls after Jan 1st 2018
 meaningful_phone_call_filtered = meaningful_phone_call_3.select do |xyz|
 
   Date.parse(xyz['created_at']) >= jan_01_18
@@ -96,10 +96,46 @@ puts "#{person_id_wants_to_vol} #{meaningful_phone_call_filtered.count} Meaninfu
 #Total meaningful calls - all time
    meaningful_phone_call_total= meaningful_phone_call_3.count
   puts " #{person_id_wants_to_vol} #{meaningful_phone_call_total} Meaningful Total"
+
+#NOT INTERESTED CALLS
+  puts "starting not interested"
+  
+  
+  not_interested_phone_call = {
+  person_id: "#{person_id_wants_to_vol}",
+  status: "meaningful_interaction",
+    method: "phone_call"
+    
+  }
+  
+not_interested_phone_call_1 = client.call(:contacts, :index, not_interested_phone_call)
+  not_interested_phone_call_2 = NationBuilder::Paginator.new(client, not_interested_phone_call_1)
+  
+not_interested_phone_call_3 = []
+  not_interested_phone_call_3 += not_interested_phone_call_2.body['results']
+
+ while not_interested_phone_call_2.next?
+  not_interested_phone_call_2 = not_interested_phone_call_2.next
+  not_interested_phone_call_3 += not_interested_phone_call_2.body['results']
+
+end  
+
+  # Not interested calls after Jan 1st 2018
+not_interested_phone_call_after_jan = not_interested_phone_call_3.select do |a|
+
+  Date.parse(a['created_at']) >= jan_01_18
+end
+
+puts "#{person_id_wants_to_vol} #{not_interested_phone_call_after_jan.count} Meaninful filtered"
+
+#Total not interested calls - all time
+   not_interested_phone_call_total= not_interested_phone_call_3.count
+  puts " #{person_id_wants_to_vol} #{not_interested_phone_call_total} Meaningful Total"
   
 
+
 #Total PICK UPS - INCLUDING ALL TYPES OF PICK UPS
-total_pick_ups= meaningful_phone_call_filtered.count+answered_phone_call_after_jan.count
+total_pick_ups= meaningful_phone_call_filtered.count+answered_phone_call_after_jan.count+not_interested_phone_call_after_jan.count
 
    puts "#{person_id_wants_to_vol} #{total_pick_ups}"
 
