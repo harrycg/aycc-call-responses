@@ -248,16 +248,20 @@ puts "#{person_id_wants_to_vol} #{left_message_phone_call_after_jan.count} No an
 
 #Total NO PICK UPS - INCLUDING ALL TYPES OF PICK UPS
 total_no_pick_ups= no_answer_phone_call_after_jan.count+left_message_phone_call_after_jan.count
+puts "#{person_id_wants_to_vol} #{total_no_pick_ups} Total NO Pickups"
 
 #Total PICK UPS - INCLUDING ALL TYPES OF PICK UPS
 total_pick_ups= meaningful_phone_call_filtered.count+answered_phone_call_after_jan.count+not_interested_phone_call_after_jan.count+send_info_phone_call_after_jan.count
+puts "#{person_id_wants_to_vol} #{total_pick_ups} Total Pickups"
 
-puts "#{person_id_wants_to_vol} #{total_pick_ups}"
+# TOTAL CALLS TO ONE PERSON
+total_calls=total_pick_ups+total_no_pick_ups
 
 custom_fields_to_be_added = {
   "person": {
     "no_answer_18":"#{total_no_pick_ups}".
   "answered_18": "#{total_pick_ups}",
+    "total_calls_made_2018": "#{total_calls}"
      "id": "#{person_id_wants_to_vol}",
   }
 }
