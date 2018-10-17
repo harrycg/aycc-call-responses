@@ -103,7 +103,7 @@ puts "#{person_id_wants_to_vol} #{meaningful_phone_call_filtered.count} Meaninfu
   
   not_interested_phone_call = {
   person_id: "#{person_id_wants_to_vol}",
-  status: "meaningful_interaction",
+  status: "not_interested",
     method: "phone_call"
     
   }
