@@ -91,21 +91,16 @@ end
 
 puts "#{tagged_id_all} #{donations_filtered123.count} Meaninful filtered"
 
+
    textcountz= texts_z.count
 
 
   puts " #{text_responded_tagged} #{textcountz} Meaningful Total"
   
-totalanswer= contacts_filtered.count+textcountz
+totalanswer= contacts_filtered.count+donations_filtered123.count
    puts "#{totalanswer}"
 
-
-
-
-  
-  
-  
-  filter_all_3 = {
+ filter_all_3 = {
   "person": {
   "answered_18": "#{totalanswer}",
      "id": "#{tagged_id_all}",
@@ -124,6 +119,7 @@ puts "#{id4}"
 
 end
   
+
   client.call(:people, :push, filter_all_3)
 
 
