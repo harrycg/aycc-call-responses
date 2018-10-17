@@ -156,9 +156,9 @@ send_info_phone_call_3 = []
 end  
 
   # send_info calls after Jan 1st 2018
-send_info_phone_call_after_jan = send_info_phone_call_3.select do |b|
+send_info_phone_call_after_jan = send_info_phone_call_3.select do |g|
 
-  Date.parse(b['created_at']) >= jan_01_18
+  Date.parse(g['created_at']) >= jan_01_18
 end
 
 puts "#{person_id_wants_to_vol} #{send_info_phone_call_after_jan.count} no answer filtered"
@@ -194,9 +194,9 @@ no_answer_phone_call_3 = []
 end  
 
   # no_answer calls after Jan 1st 2018
-no_answer_phone_call_after_jan = no_answer_phone_call_3.select do |b|
+no_answer_phone_call_after_jan = no_answer_phone_call_3.select do |h|
 
-  Date.parse(b['created_at']) >= jan_01_18
+  Date.parse(h['created_at']) >= jan_01_18
 end
 
 puts "#{person_id_wants_to_vol} #{no_answer_phone_call_after_jan.count} No answer filtered"
@@ -233,9 +233,9 @@ left_message_phone_call_3 = []
 end  
 
   # left_message calls after Jan 1st 2018
-left_message_phone_call_after_jan = left_message_phone_call_3.select do |f|
+left_message_phone_call_after_jan = left_message_phone_call_3.select do |o|
 
-  Date.parse(f['created_at']) >= jan_01_18
+  Date.parse(o['created_at']) >= jan_01_18
 end
 
 puts "#{person_id_wants_to_vol} #{left_message_phone_call_after_jan.count} No answer filtered"
