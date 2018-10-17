@@ -98,14 +98,14 @@ puts "#{person_id_wants_to_vol} #{meaningful_phone_call_filtered.count} Meaninfu
   puts " #{person_id_wants_to_vol} #{meaningful_phone_call_total} Meaningful Total"
   
 
-#Total ANSWERED CALLS - INCLUDING ALL TYPES OF CALLS
-total_answered_phone_calls= meaningful_phone_call_filtered.count+answered_phone_call_after_jan.count
+#Total PICK UPS - INCLUDING ALL TYPES OF PICK UPS
+total_pick_ups= meaningful_phone_call_filtered.count+answered_phone_call_after_jan.count
 
-   puts "#{person_id_wants_to_vol} #{total_answered_phone_calls}"
+   puts "#{person_id_wants_to_vol} #{total_pick_ups}"
 
  custom_fields_to_be_added = {
   "person": {
-  "answered_18": "#{total_answered_phone_calls}",
+  "answered_18": "#{total_pick_ups}",
      "id": "#{person_id_wants_to_vol}",
   }
 }
