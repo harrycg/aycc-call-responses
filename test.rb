@@ -262,7 +262,7 @@ total_calls=total_pick_ups+total_no_pick_ups
 
 custom_fields_to_be_added = {
   "person": {
-    "no_answer_18":"#{total_no_pick_ups}",
+    "no_answer_18": "#{total_no_pick_ups}",
   "answered_18": "#{total_pick_ups}",
     "total_calls_made_2018": "#{total_calls}",
      "id": "#{person_id_wants_to_vol}",
