@@ -35,6 +35,7 @@ filter_all_2 = {
 filter_all_2 = {
   person_id: "#{tagged_id_all}",
     status: "answered",
+   method: "phone_call",
 
   }
   
@@ -68,7 +69,9 @@ puts "#{tagged_id_all} #{contacts_filtered.count} Answered filtered"
   
   filter2 = {
   person_id: "#{tagged_id_all}",
-  status: "meaningful_interaction"
+  status: "meaningful_interaction",
+    method: "phone_call"
+    
   }
   
 texts_x = client.call(:contacts, :index, filter2)
