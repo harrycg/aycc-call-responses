@@ -4,131 +4,126 @@ require 'nationbuilder'
 
 client = NationBuilder::Client.new('aycc', ENV['NATIONBUILDER_APIKEY'], retries: 8)
 
-puts "finding peeps step 1"
+puts "finding wants to vols"
 
-filter_all = {
+filter_wants_to_vol = {
   tag: "wants%20to:%20volunteer%202018"
   }
   
-all_contacts = client.call(:people_tags, :people, filter_all)
-all_contacts_2 = NationBuilder::Paginator.new(client, all_contacts)
+wants_to_vol = client.call(:people_tags, :people, filter_wants_to_vol)
+wants_to_vol_2 = NationBuilder::Paginator.new(client, wants_to_vol)
 
 
-all_contacts_people = []
-  all_contacts_people += all_contacts_2.body['results']
-while all_contacts_2.next?
-  all_contacts_2 = all_contacts_2.next
-  all_contacts_people += all_contacts_2.body['results']
+wants_to_vol_3 = []
+  wants_to_vol_3 += wants_to_vol_2.body['results']
+while wants_to_vol_2.next?
+  wants_to_vol_2 = wants_to_vol_2.next
+  wants_to_vol_3 += wants_to_vol_2.body['results']
  
 end  
 
-all_contacts_people.each do |all_contacts_people|
-  tagged_id_all = all_contacts_people['id']
+wants_to_vol_3.each do |wants_to_vol_4|
+  person_id_wants_to_vol = wants_to_vol_4['id']
  
-=begin
-filter_all_2 = {
-  person_id: "#{tagged_id_all}",
-    status: "no_answer",
 
-  }
-=end
-filter_all_2 = {
-  person_id: "#{tagged_id_all}",
+  #ANSWERED PHONE CALL
+answered_phone_call = {
+  person_id: "#{person_id_wants_to_vol}",
     status: "answered",
    method: "phone_call",
 
   }
   
-contacts_1 = client.call(:contacts, :index, filter_all_2)
-  contacts_2 = NationBuilder::Paginator.new(client, contacts_1)
+answered_phone_call_1 = client.call(:contacts, :index, answered_phone_call)
+  answered_phone_call_2 = NationBuilder::Paginator.new(client, answered_phone_call_1)
 
   jan_01_18= Date.parse('2018-01-01')
-puts "#{tagged_id_all} #{jan_01_18} yep" 
+puts "#{person_id_wants_to_vol} #{jan_01_18} yep" 
 
   
-contacts_3 = []
-  contacts_3 += contacts_2.body['results']
+answered_phone_call_3 = []
+  answered_phone_call_3 += answered_phone_call_2.body['results']
 
- while contacts_2.next?
-  contacts_2 = contacts_2.next
-  contacts_3 += contacts_2.body['results']
+ while answered_phone_call_2.next?
+  answered_phone_call_2 = answered_phone_call_2.next
+  answered_phone_call_3 += answered_phone_call_2.body['results']
 
 end  
 
-  contacts_filtered = contacts_3.select do |c|
+  answered_phone_call_after_jan = answered_phone_call_3.select do |c|
 
   Date.parse(c['created_at']) >= jan_01_18
 end
 
-puts "#{tagged_id_all} #{contacts_filtered.count} Answered filtered"
-  count1= contacts_3.count
-  puts "#{tagged_id_all} #{count1} Answered total"
+  #Prints just phone calls after 01/01/2018
+puts "#{person_id_wants_to_vol} #{answered_phone_call_after_jan.count} Answered filtered"
+   #Prints phone calls across time
+  answered_phone_call_count_total=  answered_phone_call_3.count
+  puts "#{person_id_wants_to_vol} #{answered_phone_call_count_total} Answered total"
 
+  
+  #Meaningful phone calls
   puts "starting meaningful contact"
   
   
-  filter2 = {
-  person_id: "#{tagged_id_all}",
+  meaningful_phone_call = {
+  person_id: "#{person_id_wants_to_vol}",
   status: "meaningful_interaction",
     method: "phone_call"
     
   }
   
-texts_x = client.call(:contacts, :index, filter2)
-  texts_y = NationBuilder::Paginator.new(client, texts_x)
+meaningful_phone_call_1 = client.call(:contacts, :index, meaningful_phone_call)
+  meaningful_phone_call_2 = NationBuilder::Paginator.new(client, meaningful_phone_call_1)
   
-texts_z = []
-  texts_z += texts_y.body['results']
+meaningful_phone_call_3 = []
+  meaningful_phone_call_3 += meaningful_phone_call_2.body['results']
 
- while texts_y.next?
-  texts_y = texts_y.next
-  texts_z += texts_y.body['results']
+ while meaningful_phone_call_2.next?
+  meaningful_phone_call_2 = meaningful_phone_call_2.next
+  meaningful_phone_call_3 += meaningful_phone_call_2.body['results']
 
 end  
 
   
-donations_filtered123 = texts_z.select do |xyz|
+meaningful_phone_call_filtered = meaningful_phone_call_3.select do |xyz|
 
   Date.parse(xyz['created_at']) >= jan_01_18
 end
 
-puts "#{tagged_id_all} #{donations_filtered123.count} Meaninful filtered"
+puts "#{person_id_wants_to_vol} #{meaningful_phone_call_filtered.count} Meaninful filtered"
 
-
-   textcountz= texts_z.count
-
-
-  puts " #{tagged_id_all} #{textcountz} Meaningful Total"
+#Total meaningful calls - all time
+   meaningful_phone_call_total= meaningful_phone_call_3.count
+  puts " #{person_id_wants_to_vol} #{meaningful_phone_call_total} Meaningful Total"
   
-totalanswer= contacts_filtered.count+donations_filtered123.count
-   puts "#{tagged_id_all} #{totalanswer}"
 
- filter_all_3 = {
+#Total ANSWERED CALLS - INCLUDING ALL TYPES OF CALLS
+total_answered_phone_calls= meaningful_phone_call_filtered.count+answered_phone_call_after_jan.count
+
+   puts "#{person_id_wants_to_vol} #{total_answered_phone_calls}"
+
+ custom_fields_to_be_added = {
   "person": {
-  "answered_18": "#{totalanswer}",
-     "id": "#{tagged_id_all}",
+  "answered_18": "#{total_answered_phone_calls}",
+     "id": "#{person_id_wants_to_vol}",
   }
 }
   
-  puts " hello #{tagged_id_all} you answered #{totalanswer} times"
-     
-contacts_3.each do |contacts_4|
-  
-  email = contacts_4['email']    
-  id4 = contacts_4['person_id']
- 
-  
-puts "#{id4}" 
-
-end
-  
-
-  client.call(:people, :push, filter_all_3)
-
-
+  client.call(:people, :push, custom_fields_to_be_added)
 
 
 end
 puts "thats everyone done"
   
 
+
+    
+#contacts_3.each do |contacts_4|
+  
+ # email = contacts_4['email']    
+  #id4 = contacts_4['person_id']
+   
+#puts "#{id4}" 
+
+#end
