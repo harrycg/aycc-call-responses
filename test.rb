@@ -257,6 +257,9 @@ puts "#{person_id_wants_to_vol} #{total_pick_ups} Total Pickups"
 # TOTAL CALLS TO ONE PERSON
 total_calls=total_pick_ups+total_no_pick_ups
 
+#PICK UP RATE
+#pick_up_rate=total_pick_ups/total_calls*100
+
 custom_fields_to_be_added = {
   "person": {
     "no_answer_18":"#{total_no_pick_ups}".
