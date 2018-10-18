@@ -24,6 +24,7 @@ end
 
 wants_to_vol_3.each do |wants_to_vol_4|
   person_id_wants_to_vol = wants_to_vol_4['id']
+  tags_wants_to_vol=wants_to_vol_4['tags']
  
 
   #ANSWERED PHONE CALL
