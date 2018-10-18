@@ -192,7 +192,111 @@ meaningful_phone_call_3 = []
   meaningful_phone_call_3 += meaningful_phone_call_2.body['results']
 
 end  
+  
+ #ADD AND REMOVE TAGS BASED ON CONTACT IN LAST 24 hours
+  meaningful_phone_call_3.each do |meaningful_phone_call_4|
+      if Date.parse(meaningful_phone_call_4['created_at']) >= yesterday_1  
 
+          # answer 0
+if tags.include? 'vol ob: answer 0' 
+  
+  id = meaningful_phone_call_4['person_id']
+  puts "#{tags} #{id} " 
+  
+    add_answer_1 = {
+ id: "#{id}",
+  tagging: {
+    tag: "vol ob: answer 1"
+  }
+  
+}
+    client.call(:people, :tag_person , add_answer_1)
+  
+delete_answer_0 = {
+ id: "#{id}",
+  tagging: {
+    tag: "vol ob: answer 0"
+  }
+  
+}
+  client.call(:people, :bulk_tag_removal , delete_answer_0)
+  
+  # answer 1
+  elsif tags.include? 'vol ob: answer 1' 
+  id = meaningful_phone_call_4['person_id']
+  puts "#{tags} #{id} " 
+  
+    add_answer_2 = {
+ id: "#{id}",
+  tagging: {
+    tag: "vol ob: answer 2"
+  }
+  
+}
+  
+    client.call(:people, :tag_person , add_answer_2)
+  
+delete_answer_1 = {
+ id: "#{id}",
+  tagging: {
+    tag: "vol ob: answer 1"
+  }
+  
+}
+  client.call(:people, :bulk_tag_removal , delete_answer_2)
+  
+  # answer 2
+  elsif tags.include? 'vol ob: answer 2' 
+  id = meaningful_phone_call_4['person_id']
+  puts "#{tags} #{id} " 
+  
+    add_answer_3 = {
+ id: "#{id}",
+  tagging: {
+    tag: "vol ob: answer 3"
+  }
+  
+}
+  
+    client.call(:people, :tag_person , add_answer_3)
+  
+delete_answer_2 = {
+ id: "#{id}",
+  tagging: {
+    tag: "vol ob: answer 2"
+  }
+  
+}
+  client.call(:people, :bulk_tag_removal , delete_answer_2)
+  
+  # answer 3
+  elsif tags.include? 'vol ob: answer 3' 
+  id = meaningful_phone_call_4['person_id']
+  puts "#{tags} #{id} " 
+  
+    add_answer_4 = {
+ id: "#{id}",
+  tagging: {
+    tag: "vol ob: answer 4"
+  }
+  
+}
+  
+    client.call(:people, :tag_person , add_answer_4)
+  
+delete_answer_3 = {
+ id: "#{id}",
+  tagging: {
+    tag: "vol ob: answer 3"
+  }
+  
+}
+  client.call(:people, :bulk_tag_removal , delete_answer_3)
+  
+   end
+  end
+  end
+  
   # Meaningful calls after Jan 1st 2018
 meaningful_phone_call_filtered = meaningful_phone_call_3.select do |xyz|
 
@@ -227,6 +331,111 @@ not_interested_phone_call_3 = []
   not_interested_phone_call_3 += not_interested_phone_call_2.body['results']
 
 end  
+
+
+ #ADD AND REMOVE TAGS BASED ON CONTACT IN LAST 24 hours
+  not_interested_phone_call_3.each do |not_interested_phone_call_4|
+      if Date.parse(not_interested_phone_call_4['created_at']) >= yesterday_1  
+
+          # answer 0
+if tags.include? 'vol ob: answer 0' 
+  
+  id = not_interested_phone_call_4['person_id']
+  puts "#{tags} #{id} " 
+  
+    add_answer_1 = {
+ id: "#{id}",
+  tagging: {
+    tag: "vol ob: answer 1"
+  }
+  
+}
+    client.call(:people, :tag_person , add_answer_1)
+  
+delete_answer_0 = {
+ id: "#{id}",
+  tagging: {
+    tag: "vol ob: answer 0"
+  }
+  
+}
+  client.call(:people, :bulk_tag_removal , delete_answer_0)
+  
+  # answer 1
+  elsif tags.include? 'vol ob: answer 1' 
+  id = not_interested_phone_call_4['person_id']
+  puts "#{tags} #{id} " 
+  
+    add_answer_2 = {
+ id: "#{id}",
+  tagging: {
+    tag: "vol ob: answer 2"
+  }
+  
+}
+  
+    client.call(:people, :tag_person , add_answer_2)
+  
+delete_answer_1 = {
+ id: "#{id}",
+  tagging: {
+    tag: "vol ob: answer 1"
+  }
+  
+}
+  client.call(:people, :bulk_tag_removal , delete_answer_2)
+  
+  # answer 2
+  elsif tags.include? 'vol ob: answer 2' 
+  id = not_interested_phone_call_4['person_id']
+  puts "#{tags} #{id} " 
+  
+    add_answer_3 = {
+ id: "#{id}",
+  tagging: {
+    tag: "vol ob: answer 3"
+  }
+  
+}
+  
+    client.call(:people, :tag_person , add_answer_3)
+  
+delete_answer_2 = {
+ id: "#{id}",
+  tagging: {
+    tag: "vol ob: answer 2"
+  }
+  
+}
+  client.call(:people, :bulk_tag_removal , delete_answer_2)
+  
+  # answer 3
+  elsif tags.include? 'vol ob: answer 3' 
+  id = not_interested_phone_call_4['person_id']
+  puts "#{tags} #{id} " 
+  
+    add_answer_4 = {
+ id: "#{id}",
+  tagging: {
+    tag: "vol ob: answer 4"
+  }
+  
+}
+  
+    client.call(:people, :tag_person , add_answer_4)
+  
+delete_answer_3 = {
+ id: "#{id}",
+  tagging: {
+    tag: "vol ob: answer 3"
+  }
+  
+}
+  client.call(:people, :bulk_tag_removal , delete_answer_3)
+  
+   end
+  end
+  end
 
   # Not interested calls after Jan 1st 2018
 not_interested_phone_call_after_jan = not_interested_phone_call_3.select do |a|
@@ -263,6 +472,109 @@ send_info_phone_call_3 = []
 
 end  
 
+ #ADD AND REMOVE TAGS BASED ON CONTACT IN LAST 24 hours
+  send_info_phone_call_3.each do |send_info_phone_call_4|
+      if Date.parse(send_info_phone_call_4['created_at']) >= yesterday_1  
+
+          # answer 0
+if tags.include? 'vol ob: answer 0' 
+  
+  id = send_info_phone_call_4['person_id']
+  puts "#{tags} #{id} " 
+  
+    add_answer_1 = {
+ id: "#{id}",
+  tagging: {
+    tag: "vol ob: answer 1"
+  }
+  
+}
+    client.call(:people, :tag_person , add_answer_1)
+  
+delete_answer_0 = {
+ id: "#{id}",
+  tagging: {
+    tag: "vol ob: answer 0"
+  }
+  
+}
+  client.call(:people, :bulk_tag_removal , delete_answer_0)
+  
+  # answer 1
+  elsif tags.include? 'vol ob: answer 1' 
+  id = send_info_phone_call_4['person_id']
+  puts "#{tags} #{id} " 
+  
+    add_answer_2 = {
+ id: "#{id}",
+  tagging: {
+    tag: "vol ob: answer 2"
+  }
+  
+}
+  
+    client.call(:people, :tag_person , add_answer_2)
+  
+delete_answer_1 = {
+ id: "#{id}",
+  tagging: {
+    tag: "vol ob: answer 1"
+  }
+  
+}
+  client.call(:people, :bulk_tag_removal , delete_answer_2)
+  
+  # answer 2
+  elsif tags.include? 'vol ob: answer 2' 
+  id = send_info_phone_call_4['person_id']
+  puts "#{tags} #{id} " 
+  
+    add_answer_3 = {
+ id: "#{id}",
+  tagging: {
+    tag: "vol ob: answer 3"
+  }
+  
+}
+  
+    client.call(:people, :tag_person , add_answer_3)
+  
+delete_answer_2 = {
+ id: "#{id}",
+  tagging: {
+    tag: "vol ob: answer 2"
+  }
+  
+}
+  client.call(:people, :bulk_tag_removal , delete_answer_2)
+  
+  # answer 3
+  elsif tags.include? 'vol ob: answer 3' 
+  id = send_info_phone_call_4['person_id']
+  puts "#{tags} #{id} " 
+  
+    add_answer_4 = {
+ id: "#{id}",
+  tagging: {
+    tag: "vol ob: answer 4"
+  }
+  
+}
+  
+    client.call(:people, :tag_person , add_answer_4)
+  
+delete_answer_3 = {
+ id: "#{id}",
+  tagging: {
+    tag: "vol ob: answer 3"
+  }
+  
+}
+  client.call(:people, :bulk_tag_removal , delete_answer_3)
+  
+   end
+  end
+  end
   # send_info calls after Jan 1st 2018
 send_info_phone_call_after_jan = send_info_phone_call_3.select do |g|
 
