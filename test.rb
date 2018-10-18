@@ -38,6 +38,7 @@ answered_phone_call = {
 answered_phone_call_1 = client.call(:contacts, :index, answered_phone_call)
   answered_phone_call_2 = NationBuilder::Paginator.new(client, answered_phone_call_1)
 
+  yesterday_1 =  DateTime.now - 1
   jan_01_18= Date.parse('2018-01-01')
 puts "#{person_id_wants_to_vol} #{jan_01_18} yep" 
 
@@ -51,11 +52,117 @@ answered_phone_call_3 = []
 
 end  
 
+  #ADD AND REMOVE TAGS BASED ON CONTACT IN LAST 24 hours
+  answered_phone_call_3.each do |answered_phone_call_4|
+      if Date.parse(answered_phone_call_4['created_at']) >= yesterday_1  
+
+          # answer 0
+if tags.include? 'vol ob: answer 0' 
+  
+  id = answered_phone_call_4['person_id']
+  puts "#{tags} #{id} " 
+  
+    add_answer_1 = {
+ id: "#{id}",
+  tagging: {
+    tag: "vol ob: answer 1"
+  }
+  
+}
+    client.call(:people, :tag_person , add_answer_1)
+  
+delete_answer_0 = {
+ id: "#{id}",
+  tagging: {
+    tag: "vol ob: answer 0"
+  }
+  
+}
+  client.call(:people, :bulk_tag_removal , delete_answer_0)
+  
+  # answer 1
+  elsif tags.include? 'vol ob: answer 1' 
+  id = answered_phone_call_4['person_id']
+  puts "#{tags} #{id} " 
+  
+    add_answer_2 = {
+ id: "#{id}",
+  tagging: {
+    tag: "vol ob: answer 2"
+  }
+  
+}
+  
+    client.call(:people, :tag_person , add_answer_2)
+  
+delete_answer_1 = {
+ id: "#{id}",
+  tagging: {
+    tag: "vol ob: answer 1"
+  }
+  
+}
+  client.call(:people, :bulk_tag_removal , delete_answer_2)
+  
+  # answer 2
+  elsif tags.include? 'vol ob: answer 2' 
+  id = answered_phone_call_4['person_id']
+  puts "#{tags} #{id} " 
+  
+    add_answer_3 = {
+ id: "#{id}",
+  tagging: {
+    tag: "vol ob: answer 3"
+  }
+  
+}
+  
+    client.call(:people, :tag_person , add_answer_3)
+  
+delete_answer_2 = {
+ id: "#{id}",
+  tagging: {
+    tag: "vol ob: answer 2"
+  }
+  
+}
+  client.call(:people, :bulk_tag_removal , delete_answer_2)
+  
+  # answer 3
+  elsif tags.include? 'vol ob: answer 3' 
+  id = answered_phone_call_4['person_id']
+  puts "#{tags} #{id} " 
+  
+    add_answer_4 = {
+ id: "#{id}",
+  tagging: {
+    tag: "vol ob: answer 4"
+  }
+  
+}
+  
+    client.call(:people, :tag_person , add_answer_4)
+  
+delete_answer_3 = {
+ id: "#{id}",
+  tagging: {
+    tag: "vol ob: answer 3"
+  }
+  
+}
+  client.call(:people, :bulk_tag_removal , delete_answer_3)
+  
+   end
+  end
+  end
+  
   answered_phone_call_after_jan = answered_phone_call_3.select do |c|
 
   Date.parse(c['created_at']) >= jan_01_18
 end
 
+  
+  
   #Prints just phone calls after 01/01/2018
 puts "#{person_id_wants_to_vol} #{answered_phone_call_after_jan.count} Answered filtered"
    #Prints phone calls across time
