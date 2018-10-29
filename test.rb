@@ -7,9 +7,14 @@ client = NationBuilder::Client.new('aycc', ENV['NATIONBUILDER_APIKEY'], retries:
 puts "finding wants to vols"
 
 filter_wants_to_vol = {
-  tag: "wants%20to:%20volunteer%202018"
+  tag: "testapp"
   }
   
+=begin
+tag: "wants%20to:%20volunteer%202018"
+  
+=end
+
 wants_to_vol = client.call(:people_tags, :people, filter_wants_to_vol)
 wants_to_vol_2 = NationBuilder::Paginator.new(client, wants_to_vol)
 
