@@ -62,10 +62,10 @@ end
       if Date.parse(answered_phone_call_4['created_at']) >= yesterday_1  
 
           # answer 0
-if tags.include? 'vol ob: answer 0' 
+if tags_wants_to_vol.include? 'vol ob: answer 0' 
   
   id = answered_phone_call_4['person_id']
-  puts "#{tags} #{id} " 
+ 
   
     add_answer_1 = {
  id: "#{id}",
@@ -86,9 +86,9 @@ delete_answer_0 = {
   client.call(:people, :bulk_tag_removal , delete_answer_0)
   
   # answer 1
-  elsif tags.include? 'vol ob: answer 1' 
+  elsif tags_wants_to_vol.include? 'vol ob: answer 1' 
   id = answered_phone_call_4['person_id']
-  puts "#{tags} #{id} " 
+
   
     add_answer_2 = {
  id: "#{id}",
@@ -110,9 +110,9 @@ delete_answer_1 = {
   client.call(:people, :bulk_tag_removal , delete_answer_1)
   
   # answer 2
-  elsif tags.include? 'vol ob: answer 2' 
+  elsif tags_wants_to_vol.include? 'vol ob: answer 2' 
   id = answered_phone_call_4['person_id']
-  puts "#{tags} #{id} " 
+  
   
     add_answer_3 = {
  id: "#{id}",
@@ -134,9 +134,9 @@ delete_answer_2 = {
   client.call(:people, :bulk_tag_removal , delete_answer_2)
   
   # answer 3
-  elsif tags.include? 'vol ob: answer 3' 
+  elsif tags_wants_to_vol.include? 'vol ob: answer 3' 
   id = answered_phone_call_4['person_id']
-  puts "#{tags} #{id} " 
+
   
     add_answer_4 = {
  id: "#{id}",
@@ -203,10 +203,10 @@ end
       if Date.parse(meaningful_phone_call_4['created_at']) >= yesterday_1  
 
           # answer 0
-if tags.include? 'vol ob: answer 0' 
+if tags_wants_to_vol.include? 'vol ob: answer 0' 
   
   id = meaningful_phone_call_4['person_id']
-  puts "#{tags} #{id} " 
+  puts "#{tags_wants_to_vol} #{id} " 
   
     add_answer_1 = {
  id: "#{id}",
@@ -227,9 +227,9 @@ delete_answer_0 = {
   client.call(:people, :bulk_tag_removal , delete_answer_0)
   
   # answer 1
-  elsif tags.include? 'vol ob: answer 1' 
+  elsif tags_wants_to_vol.include? 'vol ob: answer 1' 
   id = meaningful_phone_call_4['person_id']
-  puts "#{tags} #{id} " 
+  puts "#{tags_wants_to_vol} #{id} " 
   
     add_answer_2 = {
  id: "#{id}",
@@ -251,9 +251,9 @@ delete_answer_1 = {
   client.call(:people, :bulk_tag_removal , delete_answer_1)
   
   # answer 2
-  elsif tags.include? 'vol ob: answer 2' 
+  elsif tags_wants_to_vol.include? 'vol ob: answer 2' 
   id = meaningful_phone_call_4['person_id']
-  puts "#{tags} #{id} " 
+  puts "#{tags_wants_to_vol} #{id} " 
   
     add_answer_3 = {
  id: "#{id}",
@@ -275,9 +275,9 @@ delete_answer_2 = {
   client.call(:people, :bulk_tag_removal , delete_answer_2)
   
   # answer 3
-  elsif tags.include? 'vol ob: answer 3' 
+  elsif tags_wants_to_vol.include? 'vol ob: answer 3' 
   id = meaningful_phone_call_4['person_id']
-  puts "#{tags} #{id} " 
+  puts "#{tags_wants_to_vol} #{id} " 
   
     add_answer_4 = {
  id: "#{id}",
@@ -338,15 +338,15 @@ not_interested_phone_call_3 = []
 end  
 
 
- #ADD AND REMOVE TAGS BASED ON CONTACT IN LAST 24 hours
+ #ADD AND REMOVE tags_wants_to_vol BASED ON CONTACT IN LAST 24 hours
   not_interested_phone_call_3.each do |not_interested_phone_call_4|
       if Date.parse(not_interested_phone_call_4['created_at']) >= yesterday_1  
 
           # answer 0
-if tags.include? 'vol ob: answer 0' 
+if tags_wants_to_vol.include? 'vol ob: answer 0' 
   
   id = not_interested_phone_call_4['person_id']
-  puts "#{tags} #{id} " 
+  puts "#{tags_wants_to_vol} #{id} " 
   
     add_answer_1 = {
  id: "#{id}",
@@ -367,9 +367,9 @@ delete_answer_0 = {
   client.call(:people, :bulk_tag_removal , delete_answer_0)
   
   # answer 1
-  elsif tags.include? 'vol ob: answer 1' 
+  elsif tags_wants_to_vol.include? 'vol ob: answer 1' 
   id = not_interested_phone_call_4['person_id']
-  puts "#{tags} #{id} " 
+  puts "#{tags_wants_to_vol} #{id} " 
   
     add_answer_2 = {
  id: "#{id}",
@@ -391,9 +391,9 @@ delete_answer_1 = {
   client.call(:people, :bulk_tag_removal , delete_answer_1)
   
   # answer 2
-  elsif tags.include? 'vol ob: answer 2' 
+  elsif tags_wants_to_vol.include? 'vol ob: answer 2' 
   id = not_interested_phone_call_4['person_id']
-  puts "#{tags} #{id} " 
+  puts "#{tags_wants_to_vol} #{id} " 
   
     add_answer_3 = {
  id: "#{id}",
@@ -415,9 +415,9 @@ delete_answer_2 = {
   client.call(:people, :bulk_tag_removal , delete_answer_2)
   
   # answer 3
-  elsif tags.include? 'vol ob: answer 3' 
+  elsif tags_wants_to_vol.include? 'vol ob: answer 3' 
   id = not_interested_phone_call_4['person_id']
-  puts "#{tags} #{id} " 
+  puts "#{tags_wants_to_vol} #{id} " 
   
     add_answer_4 = {
  id: "#{id}",
@@ -482,10 +482,10 @@ end
       if Date.parse(send_info_phone_call_4['created_at']) >= yesterday_1  
 
           # answer 0
-if tags.include? 'vol ob: answer 0' 
+if tags_wants_to_vol.include? 'vol ob: answer 0' 
   
   id = send_info_phone_call_4['person_id']
-  puts "#{tags} #{id} " 
+  puts "#{tags_wants_to_vol} #{id} " 
   
     add_answer_1 = {
  id: "#{id}",
@@ -506,9 +506,9 @@ delete_answer_0 = {
   client.call(:people, :bulk_tag_removal , delete_answer_0)
   
   # answer 1
-  elsif tags.include? 'vol ob: answer 1' 
+  elsif tags_wants_to_vol.include? 'vol ob: answer 1' 
   id = send_info_phone_call_4['person_id']
-  puts "#{tags} #{id} " 
+  puts "#{tags_wants_to_vol} #{id} " 
   
     add_answer_2 = {
  id: "#{id}",
@@ -530,9 +530,9 @@ delete_answer_1 = {
   client.call(:people, :bulk_tag_removal , delete_answer_1)
   
   # answer 2
-  elsif tags.include? 'vol ob: answer 2' 
+  elsif tags_wants_to_vol.include? 'vol ob: answer 2' 
   id = send_info_phone_call_4['person_id']
-  puts "#{tags} #{id} " 
+  puts "#{tags_wants_to_vol} #{id} " 
   
     add_answer_3 = {
  id: "#{id}",
@@ -554,9 +554,9 @@ delete_answer_2 = {
   client.call(:people, :bulk_tag_removal , delete_answer_2)
   
   # answer 3
-  elsif tags.include? 'vol ob: answer 3' 
+  elsif tags_wants_to_vol.include? 'vol ob: answer 3' 
   id = send_info_phone_call_4['person_id']
-  puts "#{tags} #{id} " 
+  puts "#{tags_wants_to_vol} #{id} " 
   
     add_answer_4 = {
  id: "#{id}",
@@ -619,15 +619,15 @@ no_answer_phone_call_3 = []
 end  
 
 
- #ADD AND REMOVE TAGS BASED ON CONTACT IN LAST 24 hours
+ #ADD AND REMOVE tags_wants_to_vol BASED ON CONTACT IN LAST 24 hours
   no_answer_phone_call_3.each do |no_answer_phone_call_4|
       if Date.parse(no_answer_phone_call_4['created_at']) >= yesterday_1  
 
           # answer 0
-if tags.include? 'vol ob: no answer 0' 
+if tags_wants_to_vol.include? 'vol ob: no answer 0' 
   
   id = no_answer_phone_call_4['person_id']
-  puts "#{tags} #{id} " 
+  puts "#{tags_wants_to_vol} #{id} " 
   
     add_no_answer_1 = {
  id: "#{id}",
@@ -648,9 +648,9 @@ delete_no_answer_0 = {
   client.call(:people, :bulk_tag_removal , delete_answer_0)
   
   # answer 1
-  elsif tags.include? 'vol ob: no answer 1' 
+  elsif tags_wants_to_vol.include? 'vol ob: no answer 1' 
   id = no_answer_phone_call_4['person_id']
-  puts "#{tags} #{id} " 
+  puts "#{tags_wants_to_vol} #{id} " 
   
     add_no_answer_2 = {
  id: "#{id}",
@@ -672,9 +672,9 @@ delete_no_answer_1 = {
   client.call(:people, :bulk_tag_removal , delete_no_answer_1)
   
   # answer 2
-  elsif tags.include? 'vol ob: no answer 2' 
+  elsif tags_wants_to_vol.include? 'vol ob: no answer 2' 
   id = no_answer_phone_call_4['person_id']
-  puts "#{tags} #{id} " 
+  puts "#{tags_wants_to_vol} #{id} " 
   
     add_no_answer_3 = {
  id: "#{id}",
@@ -696,9 +696,9 @@ delete_no_answer_2 = {
   client.call(:people, :bulk_tag_removal , delete_no_answer_2)
   
   # answer 3
-  elsif tags.include? 'vol ob: no answer 3' 
+  elsif tags_wants_to_vol.include? 'vol ob: no answer 3' 
   id = no_answer_phone_call_4['person_id']
-  puts "#{tags} #{id} " 
+  puts "#{tags_wants_to_vol} #{id} " 
   
     add_no_answer_4 = {
  id: "#{id}",
@@ -768,10 +768,10 @@ end
       if Date.parse(left_message_phone_call_4['created_at']) >= yesterday_1  
 
           # answer 0
-if tags.include? 'vol ob: no answer 0' 
+if tags_wants_to_vol.include? 'vol ob: no answer 0' 
   
   id = left_message_phone_call_4['person_id']
-  puts "#{tags} #{id} " 
+  puts "#{tags_wants_to_vol} #{id} " 
   
     add_no_answer_1 = {
  id: "#{id}",
@@ -792,9 +792,9 @@ delete_no_answer_0 = {
   client.call(:people, :bulk_tag_removal , delete_answer_0)
   
   # answer 1
-  elsif tags.include? 'vol ob: no answer 1' 
+  elsif tags_wants_to_vol.include? 'vol ob: no answer 1' 
   id = left_message_phone_call_4['person_id']
-  puts "#{tags} #{id} " 
+  puts "#{tags_wants_to_vol} #{id} " 
   
     add_no_answer_2 = {
  id: "#{id}",
@@ -816,9 +816,9 @@ delete_no_answer_1 = {
   client.call(:people, :bulk_tag_removal , delete_no_answer_1)
   
   # answer 2
-  elsif tags.include? 'vol ob: no answer 2' 
+  elsif tags_wants_to_vol.include? 'vol ob: no answer 2' 
   id = left_message_phone_call_4['person_id']
-  puts "#{tags} #{id} " 
+  puts "#{tags_wants_to_vol} #{id} " 
   
     add_no_answer_3 = {
  id: "#{id}",
@@ -840,9 +840,9 @@ delete_no_answer_2 = {
   client.call(:people, :bulk_tag_removal , delete_no_answer_2)
   
   # answer 3
-  elsif tags.include? 'vol ob: no answer 3' 
+  elsif tags_wants_to_vol.include? 'vol ob: no answer 3' 
   id = left_message_phone_call_4['person_id']
-  puts "#{tags} #{id} " 
+  puts "#{tags_wants_to_vol} #{id} " 
   
     add_no_answer_4 = {
  id: "#{id}",
