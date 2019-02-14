@@ -311,7 +311,8 @@ if tags_wants_to_vol.include? 'vol ob: answer 2'
 delete_answer_0 = {
  id: "#{person_id_wants_to_vol}",
   tagging: {
-    tag: "vol ob: answer 1", "vol ob: answer 0"
+    tag: ["vol ob: answer 1", "vol ob: answer 0"]
+  }
   }
 
   client.call(:people, :bulk_tag_removal , delete_answer_0)
