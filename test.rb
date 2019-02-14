@@ -41,7 +41,7 @@ answered_phone_call_1 = client.call(:contacts, :index, answered_phone_call)
   answered_phone_call_2 = NationBuilder::Paginator.new(client, answered_phone_call_1)
 
   yesterday_1 =  DateTime.now - 1
-  jan_01_18= Date.parse('2018-01-01')
+  jan_01_18= Date.parse('2019-01-01')
 puts "#{person_id_wants_to_vol} #{jan_01_18} yep" 
 
   
