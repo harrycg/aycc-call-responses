@@ -1,5 +1,4 @@
 
-
 require 'nationbuilder'
 
 client = NationBuilder::Client.new('aycc', ENV['NATIONBUILDER_APIKEY'], retries: 8)
@@ -36,7 +35,10 @@ answered_phone_call = {
    method: "phone_call",
 
   }
-  
+   jan_01_18= Date.parse('2019-01-01')
+puts "#{person_id_wants_to_vol} #{jan_01_18} yep" 
+
+
 answered_phone_call_1 = client.call(:contacts, :index, answered_phone_call)
   answered_phone_call_2 = NationBuilder::Paginator.new(client, answered_phone_call_1)
 
@@ -161,12 +163,15 @@ delete_answer_3 = {
   answered_phone_call_after_jan = answered_phone_call_3.select do |c|
 
   Date.parse(c['created_at']) >= jan_01_18
+  
 end
 
   
   
-  #Prints just phone calls after 01/01/2018
+  #Prints just phone calls after 01/01/2019
 puts "#{person_id_wants_to_vol} #{answered_phone_call_after_jan.count} Answered filtered"
+
+
    #Prints phone calls across time
   answered_phone_call_count_total=  answered_phone_call_3.count
   puts "#{person_id_wants_to_vol} #{answered_phone_call_count_total} Answered total"
@@ -886,6 +891,31 @@ puts "#{person_id_wants_to_vol} #{total_no_pick_ups} Total NO Pickups"
 total_pick_ups= meaningful_phone_call_filtered.count+answered_phone_call_after_jan.count+not_interested_phone_call_after_jan.count+send_info_phone_call_after_jan.count
 puts "#{person_id_wants_to_vol} #{total_pick_ups} Total Pickups"
 
+
+# # # # # # #
+add_final_ANSWER_tags = {
+ id: "#{id}",
+  tagging: {
+    tag: "vol ob: answer #{total_pick_ups}"
+  }
+  
+}
+  
+    client.call(:people, :tag_person , add_final_ANSWER_tags)
+
+
+add_final_NO_ANSWER_tags = {
+ id: "#{id}",
+  tagging: {
+    tag: "vol ob: answer #{total_no_pick_ups}"
+  }
+  
+}
+  
+    client.call(:people, :tag_person , add_final_NO_ANSWER_tags)
+
+
+
 # TOTAL CALLS TO ONE PERSON
 total_calls=total_pick_ups+total_no_pick_ups
 
@@ -909,14 +939,3 @@ end
 #puts "#{all_calls}"
 puts "thats everyone done"
   
-
-
-    
-#contacts_3.each do |contacts_4|
-  
- # email = contacts_4['email']    
-  #id4 = contacts_4['person_id']
-   
-#puts "#{id4}" 
-
-#end
