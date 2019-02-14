@@ -10,8 +10,6 @@ tag: "wants%20to:%20volunteer%202019"
   }
   
 
-## Pulls the tag and stores data
-##
 
 wants_to_vol = client.call(:people_tags, :people, filter_wants_to_vol)
 wants_to_vol_2 = NationBuilder::Paginator.new(client, wants_to_vol)
@@ -31,7 +29,6 @@ wants_to_vol_3.each do |wants_to_vol_4|
  
 
   #ANSWERED PHONE CALL
-  # 
 answered_phone_call = {
   person_id: "#{person_id_wants_to_vol}",
     status: "answered",
@@ -77,7 +74,6 @@ puts "#{person_id_wants_to_vol} #{answered_phone_call_after_jan.count} Answered 
 
   
   #Meaningful phone calls
-  #
   puts "starting meaningful contact"
   
   
@@ -114,7 +110,6 @@ puts "#{person_id_wants_to_vol} #{meaningful_phone_call_filtered.count} Meaninfu
   puts " #{person_id_wants_to_vol} #{meaningful_phone_call_total} Meaningful Total"
 
 #NOT INTERESTED CALLS
-#
   puts "starting not interested"
   
   
@@ -305,6 +300,27 @@ total_calls=total_pick_ups+total_no_pick_ups
 #PICK UP RATE
 #pick_up_rate=total_pick_ups/total_calls*100
 
+
+
+
+ #REMOVE TAGS 
+ 
+if tags_wants_to_vol.include? 'vol ob: answer 2' 
+
+  
+delete_answer_0 = {
+ id: "#{person_id_wants_to_vol}",
+  tagging: {
+    tag: ["vol ob: answer 1", "vol ob: answer 0"]
+  }
+
+  client.call(:people, :bulk_tag_removal , delete_answer_0)
+
+end    
+    
+
+
+
 custom_fields_to_be_added = {
   "person": {
     "no_answer_18": "#{total_no_pick_ups}",
@@ -317,6 +333,7 @@ custom_fields_to_be_added = {
  # client.call(:people, :push, custom_fields_to_be_added)
 
 #all_calls=all_calls+total_calls
+
 end
 
 #puts "#{all_calls}"
