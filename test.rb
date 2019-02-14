@@ -301,24 +301,106 @@ total_calls=total_pick_ups+total_no_pick_ups
 #pick_up_rate=total_pick_ups/total_calls*100
 
 
+ #REMOVE TAGS for ANSWER 3
+ 
+if tags_wants_to_vol.include? 'vol ob: answer 3' 
+
+  
+delete_answer_3 = {
+ id: "#{person_id_wants_to_vol}",
+  tagging: {
+    tag: ["vol ob: answer 2", "vol ob: answer 1", "vol ob: answer 0"]
+  }
+  }
+
+  client.call(:people, :bulk_tag_removal , delete_answer_3)
+
+end    
 
 
- #REMOVE TAGS 
+ #REMOVE TAGS for ANSWER 2
  
 if tags_wants_to_vol.include? 'vol ob: answer 2' 
 
   
-delete_answer_0 = {
+delete_answer_2 = {
  id: "#{person_id_wants_to_vol}",
   tagging: {
     tag: ["vol ob: answer 1", "vol ob: answer 0"]
   }
   }
 
-  client.call(:people, :bulk_tag_removal , delete_answer_0)
+  client.call(:people, :bulk_tag_removal , delete_answer_2)
 
 end    
     
+
+ #REMOVE TAGS for ANSWER 1
+ 
+if tags_wants_to_vol.include? 'vol ob: answer 1' 
+
+  
+delete_answer_1 = {
+ id: "#{person_id_wants_to_vol}",
+  tagging: {
+    tag: "vol ob: answer 0"
+  }
+  }
+
+  client.call(:people, :bulk_tag_removal , delete_answer_1)
+
+end    
+
+ #REMOVE TAGS for NO ANSWER 3
+ 
+if tags_wants_to_vol.include? 'vol ob: no answer 3' 
+
+  
+delete_no_answer_3 = {
+ id: "#{person_id_wants_to_vol}",
+  tagging: {
+    tag: ["vol ob: no answer 2", "vol ob: no answer 1", "vol ob: no answer 0"]
+  }
+  }
+
+  client.call(:people, :bulk_tag_removal , delete_no_answer_3)
+
+end    
+
+
+ #REMOVE TAGS for NO ANSWER 2
+ 
+if tags_wants_to_vol.include? 'vol ob: no answer 2' 
+
+  
+delete_no_answer_2 = {
+ id: "#{person_id_wants_to_vol}",
+  tagging: {
+    tag: ["vol ob: no answer 1", "vol ob: no answer 0"]
+  }
+  }
+
+  client.call(:people, :bulk_tag_removal , delete_no_answer_2)
+
+end    
+    
+
+ #REMOVE TAGS for NO ANSWER 1
+ 
+if tags_wants_to_vol.include? 'vol ob: no answer 1' 
+
+  
+delete_no_answer_1 = {
+ id: "#{person_id_wants_to_vol}",
+  tagging: {
+    tag: "vol ob: no answer 0"
+  }
+  }
+
+  client.call(:people, :bulk_tag_removal , delete_no_answer_1)
+
+end    
+
 
 
 
