@@ -297,6 +297,16 @@ add_final_NO_ANSWER_tags = {
 # TOTAL CALLS TO ONE PERSON
 total_calls=total_pick_ups+total_no_pick_ups
 
+add_final_CALLED_tags = {
+ id: "#{person_id_wants_to_vol}",
+  tagging: {
+    tag: "vol ob: called #{total_calls}"
+  }
+  
+}
+  
+    client.call(:people, :tag_person , add_final_CALLED_tags)
+
 #PICK UP RATE
 #pick_up_rate=total_pick_ups/total_calls*100
 
