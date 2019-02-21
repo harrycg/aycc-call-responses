@@ -285,7 +285,7 @@ add_final_ANSWER_tags = {
 add_final_NO_ANSWER_tags = {
  id: "#{person_id_wants_to_vol}",
   tagging: {
-    tag: "vol ob: answer #{total_no_pick_ups}"
+    tag: "vol ob: no answer #{total_no_pick_ups}"
   }
   
 }
